@@ -1,3 +1,5 @@
+//Alex Portolese and Sam Stein
+//This file contains the declarations for the Contact Us window.
 #ifndef CONTACTUS_H
 #define CONTACTUS_H
 

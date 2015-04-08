@@ -1,3 +1,5 @@
+//Alex Portolese and Sam Stein
+//This file contains the declarations for the Controls window.
 #ifndef CONTROLS_H
 #define CONTROLS_H
 

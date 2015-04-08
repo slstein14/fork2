@@ -31,17 +31,17 @@
      <property name="title">
       <string>New 1 Player Game</string>
      </property>
-     <addaction name="actionEasy"/>
-     <addaction name="actionMedium"/>
-     <addaction name="actionHard"/>
+     <addaction name="Easy_1P"/>
+     <addaction name="Medium_1P"/>
+     <addaction name="Hard_1P"/>
     </widget>
     <widget class="QMenu" name="menuNew_2_Player_Game">
      <property name="title">
       <string>New 2 Player Game</string>
      </property>
-     <addaction name="actionEasy_2"/>
-     <addaction name="actionMedium_2"/>
-     <addaction name="actionHard_2"/>
+     <addaction name="Easy_2P"/>
+     <addaction name="Medium_2P"/>
+     <addaction name="Hard_2P"/>
     </widget>
     <addaction name="menuNew_1_Player_Game"/>
     <addaction name="menuNew_2_Player_Game"/>
@@ -66,32 +66,35 @@
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionEasy">
+  <action name="Easy_1P">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Easy</string>
    </property>
   </action>
-  <action name="actionMedium">
+  <action name="Medium_1P">
    <property name="text">
     <string>Medium</string>
    </property>
   </action>
-  <action name="actionHard">
+  <action name="Hard_1P">
    <property name="text">
     <string>Hard</string>
    </property>
   </action>
-  <action name="actionEasy_2">
+  <action name="Easy_2P">
    <property name="text">
     <string>Easy</string>
    </property>
   </action>
-  <action name="actionMedium_2">
+  <action name="Medium_2P">
    <property name="text">
     <string>Medium</string>
    </property>
   </action>
-  <action name="actionHard_2">
+  <action name="Hard_2P">
    <property name="text">
     <string>Hard</string>
    </property>

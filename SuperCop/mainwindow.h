@@ -1,3 +1,5 @@
+//Alex Portolese and Sam Stein
+//This file contains the declarations for the Main window.
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "contactus.h"

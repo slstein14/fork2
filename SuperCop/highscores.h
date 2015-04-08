@@ -1,3 +1,5 @@
+//Alex Portolese and Sam Stein
+//This file contains the declarations for the High Scores window.
 #ifndef HIGHSCORES_H
 #define HIGHSCORES_H
 

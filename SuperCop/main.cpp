@@ -1,3 +1,5 @@
+//Alex Portolese and Sam Stein
+//This file contains the coding to start the app.
 #include "mainwindow.h"
 #include <QApplication>
 
