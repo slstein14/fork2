@@ -3,6 +3,7 @@
 //and to make the menus accessible to the user.
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "supercop_game.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
         contact = NULL;
         controls = NULL;
         hScore = NULL;
+
 }//Sets the background image for the main menu
 
 MainWindow::~MainWindow()
@@ -55,3 +57,9 @@ void MainWindow::on_actionHigh_Scores_triggered()
     }
     hScore->show();
 }//Opens an instance of the High Score window
+
+void MainWindow::on_Easy_1P_triggered()
+{
+    SuperCopGame *scg = new SuperCopGame();
+//    scg->show();
+}

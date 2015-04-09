@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui quick
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,14 +16,21 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     controls.cpp \
     contactus.cpp \
-    highscores.cpp
+    highscores.cpp \
+    supercop_game.cpp
 
 HEADERS  += mainwindow.h \
     controls.h \
     contactus.h \
-    highscores.h
+    highscores.h \
+    supercop_game.h
 
 FORMS    += mainwindow.ui \
     controls.ui \
     contactus.ui \
-    highscores.ui
+    highscores.ui \
+    supercop_game.ui
+
+DISTFILES += \
+    CopRollAnim.qml \
+    CopRunAnim.qml
