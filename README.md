@@ -1,11 +1,14 @@
 # SuperCop
 Spring 2015 C++ Final Project
 
-Game Title: SuperCop
-Game Type: 2-D Side-scroller. (Original Super Mario style)
+<b>Game Title:</b> SuperCop
 
-Features:
-	-Three Difficulties
-	-"Endless" Mode [?]
-	-AI
-	-1 and 2 Player modes
+<b>Game Type:</b> 2-D Side-scroller. (Original Super Mario style)
+
+<b>Features:</b>
+<ul>
+<li>Three Difficulties</li>
+<li>"Endless" Mode [?]</li>
+<li>AI</li>
+<li>1 and 2 Player modes</li>
+</ul>
