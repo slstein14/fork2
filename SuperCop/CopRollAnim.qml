@@ -19,13 +19,12 @@ Item
         anchors.verticalCenterOffset: 1
         anchors.horizontalCenterOffset: 0
         z: 1
-//        frameDuration: -2
         currentFrame: 0
         anchors.centerIn: parent
         source: "../SuperCop/Images/CopRoll.png"
 
         frameCount: 8
-        frameSync: true
+        frameRate: 30
         frameWidth: 246
         frameHeight: 233
         focus: true

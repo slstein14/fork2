@@ -3,7 +3,6 @@
 //and to make the menus accessible to the user.
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "supercop_game.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
         contact = NULL;
         controls = NULL;
         hScore = NULL;
+        scg = NULL;
 
 }//Sets the background image for the main menu
 
@@ -27,6 +27,7 @@ MainWindow::~MainWindow()
     delete contact;
     delete controls;
     delete hScore;
+    delete scg;
 }//Clears potential memory leaks
 
 void MainWindow::on_actionExit_triggered()
@@ -60,6 +61,9 @@ void MainWindow::on_actionHigh_Scores_triggered()
 
 void MainWindow::on_Easy_1P_triggered()
 {
-    SuperCopGame *scg = new SuperCopGame();
-//    scg->show();
+    if(scg == NULL)
+    {
+        scg = new SuperCopGame();
+    }
+    scg->show();
 }

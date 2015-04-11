@@ -5,6 +5,8 @@
 #include "contactus.h"
 #include "controls.h"
 #include "highscores.h"
+#include "supercopgame.h"
+
 #include <QMainWindow>
 #include <QtQuick/QQuickView>
 
@@ -36,6 +38,7 @@ private:
     ContactUs* contact;
     Controls* controls;
     HighScores* hScore;
+    SuperCopGame *scg;
 };
 
 #endif // MAINWINDOW_H
