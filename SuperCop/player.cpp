@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "player.h"
+#include "supercopgame.h"
 #include <QDebug>
 #include <QKeyEvent>
 #include <QTimer>
@@ -8,13 +9,16 @@ Player::Player(QWidget *parent)
 {
     posX = 10;
     posY = parent->height() - 220;
-    sizeX = 126;
-    sizeY = 204;
+    sizeX = 50;
+    sizeY = 86;
     image = new QPixmap("../SuperCop/Images/player.png");
     animationTimer = new QTimer();
     animationTimer->setInterval(17);
-    count = 0;
+    frame = 0;
     animationTimer->start();
+    lastActionPressed = 0;
+
+//    playerScreenPos(parent);
 }
 
 Player::~Player()
@@ -29,114 +33,123 @@ void Player::drawPlayer(QPainter &painter)
     painter.drawPixmap(posX, posY, sizeX, sizeY, *image);
 }
 
-void Player::updatePlayer(int action)
-{
-    connect(animationTimer, SIGNAL(timeout()), this, SLOT(playerAction(action)));
-}
-
 void Player::changeImage(QString str)
 {
     delete image;
     image = new QPixmap(str);
 }
 
-void Player::playerAction(int action)
+void Player::playerScreenPos(QWidget *w)
 {
+
+}
+
+int Player::playerAction(int action)
+{
+    //If the new direction does not match the previous direction, reset the frame counter to zero.
+    if(action != lastActionPressed)
+    {
+        qDebug() << "Last action: " << lastActionPressed;
+        qDebug() << "New aciton: " << action;
+        frame = 0;
+        lastActionPressed = action;
+    }
+
+    //Checks which direction is being called then runs the appropriate function
     switch (action)
     {
     case RIGHT:
-        playerRun();
+        /*return*/ run();
+        return 0;
         break;
     case UP:
-        playerJump();
+        return jump();
         break;
     case DOWN:
-        playerRoll();
+        return roll();
         break;
-    default:
+    case LEFT:
+        /*return */runInverted();
+        return 0;
+        break;
+    case NONE:
+        standBy();
         break;
     }
+
+    lastActionPressed = action;
 }
 
-void Player::jump()
+int Player::jump()
 {
+    return 0;
     //IGNORE THIS FUNCTION FOR NOW
 }
 
-
-void Player::playerJump()
+int Player::roll()
 {
-    //IGNORE THIS FUNCTION FOR NOW
+        frame++;
+        QString imagePath = QString("../SuperCop/Images/Rolling/Roll%1.png").arg(QString::number(frame));
+
+        //Resizes the player to half size
+        sizeX = 25;
+        sizeY = 40;
+
+        if(9 > frame)
+        {
+            changeImage(imagePath);
+//            return 3;
+        }
+        else
+        {
+            //After one loop, return the player to normal size and continue running to the right.
+            sizeX = 50;
+            sizeY = 81;
+            frame = 0;
+
+            return 0;
+        }
 }
 
-void Player::roll()
+int Player::run()
 {
-    for(int frame = 0; frame < 8; frame++)
-        playerRoll();
-}
+    frame++;
+    QString imagePath = QString("../SuperCop/Images/Running/Run0_%1.png").arg(frame);
 
-void Player::playerRoll()
-{
-    //Reset the animation counter
-//    if(count > 0)
-//        count = 0;
-
-    count++;
-
-    if(1 == count)
+    if(4 > frame)
     {
-        changeImage("../SuperCop/Images/Rolling/Roll1.png");
-    }
-    else if(2 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll2.png");
-    }
-    else if(3 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll3.png");
-    }
-    else if(4 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll4.png");
-    }
-    else if(5 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll5.png");
-    }
-    else if(6 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll6.png");
-    }
-    else if(7 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll7.png");
-    }
-    else if(8 == count)
-    {
-        changeImage("../SuperCop/Images/Rolling/Roll8.png");
+        changeImage(imagePath);
+//        return 1;
     }
     else
-        count = 0;
+    {
+        frame = 0;
+        return 0;
+    }
 }
 
-void Player::playerRun()
+int Player::runInverted()
 {
-    count++;
+    frame++;
+    QString imagePath = QString("../SuperCop/Images/Running/Run1_%1.png").arg(frame);
 
-    if(1 == count)
+    if(4 > frame)
     {
-        changeImage("../SuperCop/Images/Running/Run1.png");
-    }
-    else if(2 == count)
-    {
-        changeImage("../SuperCop/Images/Running/Run2.png");
-    }
-    else if(3 == count)
-    {
-        changeImage("../SuperCop/Images/Running/Run3.png");
+        changeImage(imagePath);
+//        return 0;
     }
     else
-        count = 0;
+    {
+        frame = 0;
+        return 0;
+    }
 }
 
+void Player::standBy()
+{
+    if(lastActionPressed == 1)
+        changeImage("../SuperCop/Images/Running/Run0_1.png");
 
+    if(lastActionPressed == 4)
+        changeImage("../SuperCop/Images/Running/Run1_1.png");
+}

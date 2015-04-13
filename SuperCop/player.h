@@ -12,13 +12,14 @@ class Player : public QObject
 {
 
 private:
-    enum keyPressed {RIGHT = 1, UP = 2, DOWN = 3};
+    enum keyPressed {NONE = 0, RIGHT = 1, UP = 2, DOWN = 3, LEFT = 4};
 
     int posX;
     int posY;
     int sizeX;
     int sizeY;
-    int count;
+    int frame;
+    int lastActionPressed;
     QPixmap *image;
     QTimer *animationTimer;
 
@@ -28,12 +29,14 @@ public:
     ~Player();
 
     void drawPlayer(QPainter &painter);
-    void updatePlayer(int action);
     void changeImage(QString str);
+    void playerScreenPos(QWidget *w);
 
-    void jump();
-    void roll();
-    void run();
+    int jump();
+    int roll();
+    int run();
+    int runInverted();
+    void standBy();
 
     void setPosX(int x);
     void setPosY(int y);
@@ -46,10 +49,7 @@ public:
     int getSizeY();
 
 public slots:
-    void playerAction(int action);
-    void playerJump();
-    void playerRoll();
-    void playerRun();
+    int playerAction(int action);
 };
 
 #endif // Player_H

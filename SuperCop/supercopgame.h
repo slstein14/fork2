@@ -23,7 +23,7 @@ class SuperCopGame : public QWidget
 
 
 private:
-    enum keyPressed {RIGHT = 1, UP = 2, DOWN = 3};
+    enum keyPressed {NONE = 0, RIGHT = 1, UP = 2, DOWN = 3, LEFT = 4};
     Ui::SuperCopGame *ui;
 
     Player *player;
@@ -36,6 +36,7 @@ public:
     ~SuperCopGame();
 
     void keyPressEvent(QKeyEvent *evt);
+    void setLastKeyPress(int keyPress);
 
 signals:
 

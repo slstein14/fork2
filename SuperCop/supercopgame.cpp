@@ -7,7 +7,6 @@
 #include <QDebug>
 #include <ctime>
 #include <cstdlib>
-//#include "ui_supercop_game.h"
 
 
 SuperCopGame::SuperCopGame(QWidget *parent) :
@@ -25,11 +24,14 @@ SuperCopGame::SuperCopGame(QWidget *parent) :
     timer->setInterval(40);
     connect(timer, SIGNAL(timeout()), this, SLOT(updateField()));
     timer->start();
-    lastKeyPress = 0;
+
+    lastKeyPress = 1;
 }
 
 SuperCopGame::~SuperCopGame()
 {
+    delete timer;
+    delete player;
 }
 
 void SuperCopGame::keyPressEvent(QKeyEvent *evt)
@@ -48,16 +50,28 @@ void SuperCopGame::keyPressEvent(QKeyEvent *evt)
         qDebug() << "Up";
         lastKeyPress = 2;
         break;
+    case Qt::Key_Left:
+        qDebug() << "Left";
+        lastKeyPress = 4;
+        break;
     }
+
+}
+
+void SuperCopGame::setLastKeyPress(int key)
+{
+    this->lastKeyPress = key;
 }
 
 void SuperCopGame::updateField()
 {
-    player->playerAction(lastKeyPress);
+    if(0 == player->playerAction(lastKeyPress))
+        setLastKeyPress(0);
+    else
+        player->playerAction(lastKeyPress);
+
     this->update();
 }
-
-
 
 void SuperCopGame::paintEvent(QPaintEvent *e)
 {
