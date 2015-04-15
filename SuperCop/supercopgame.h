@@ -28,7 +28,9 @@ private:
 
     Player *player;
     QTimer *timer;
+    QTimer *keyTimer;
     int lastKeyPress;
+    bool isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
 
 public:
     void paintEvent(QPaintEvent *e);
@@ -36,12 +38,14 @@ public:
     ~SuperCopGame();
 
     void keyPressEvent(QKeyEvent *evt);
+    void keyReleaseEvent(QKeyEvent *evt);
     void setLastKeyPress(int keyPress);
-
 signals:
 
 public slots:
+    void pollKey();
     void updateField();
+
 };
 
 #endif // SUPERCOPGAME_H
