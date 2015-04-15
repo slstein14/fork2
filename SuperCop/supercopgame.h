@@ -3,7 +3,6 @@
 
 
 #include "player.h"
-
 #include <QWidget>
 #include <QGraphicsItem>
 #include <QtCore>
@@ -12,6 +11,10 @@
 #include <QQuickView>
 #include <QTimer>
 #include <QKeyEvent>
+
+
+#include <QMessageBox>
+#include "enemy.h"
 
 namespace Ui {
 class SuperCopGame;
@@ -31,6 +34,15 @@ private:
     QTimer *keyTimer;
     int lastKeyPress;
     bool isUpPressed, isDownPressed, isLeftPressed, isRightPressed;
+
+
+    bool paused;
+    QPixmap* robot;
+    int picX,picY;
+    int picHeight, picWidth;
+    int gamescore;
+    Enemy *enemy;
+    int gameover;
 
 public:
     void paintEvent(QPaintEvent *e);
